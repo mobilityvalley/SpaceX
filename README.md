@@ -1,6 +1,6 @@
 # SpaceX
 
-SpceX is a Swift project to showcase Clean Architecture (VIP) implementation
+SpaceX is a Swift project to showcase Clean Architecture (VIP) implementation
 
 ## Installation
 

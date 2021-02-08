@@ -1,6 +1,6 @@
 //
 //  LaunchTableViewCell.swift
-//  Space
+//  SpaceX
 //
 //  Created by Eric Granger on 08/02/2021.
 //

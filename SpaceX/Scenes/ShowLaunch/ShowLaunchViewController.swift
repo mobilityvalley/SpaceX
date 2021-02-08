@@ -1,8 +1,8 @@
 //
 //  ShowLaunchViewController.swift
-//  Space
+//  SpaceX
 //
-//  Created by Eric Granger on 06/02/2021.
+//  Created by Eric Granger on 08/02/2021.
 //
 
 import UIKit
@@ -10,8 +10,13 @@ import Nuke
 import XCDYouTubeKit
 import AVKit
 
-class ShowLaunchViewController: UIViewController {
+protocol ShowLaunchDisplayLogic: class {
+    func displayLaunch(viewModel: ShowLaunch.GetLaunch.ViewModel)
+    func displayRocket(viewModel: ShowLaunch.FetchRocket.ViewModel)
+}
 
+class ShowLaunchViewController: UIViewController, ShowLaunchDisplayLogic {
+    
     // MARK: - IBOutlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -31,33 +36,79 @@ class ShowLaunchViewController: UIViewController {
     }
     
     // MARK: - Properties
-    var launch: Launch!
     
-    // MARK: - ViewController
+    var interactor: ShowLaunchBusinessLogic?
+    var router: (NSObjectProtocol & ShowLaunchRoutingLogic & ShowLaunchDataPassing)?
+    var youtubeId: String?
+    
+    // MARK: Object lifecycle
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    private func setup() {
+        let viewController = self
+        let interactor = ShowLaunchInteractor()
+        let presenter = ShowLaunchPresenter()
+        let router = ShowLaunchRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
+    // MARK: Routing
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
+    }
+    
+    // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        displayLaunch()
-        getRocket()
+        getLaunch()
     }
     
-    func displayLaunch() {
-        nameLabel.text = launch.name
+    // MARK: Launch
+    func getLaunch() {
+        let request = ShowLaunch.GetLaunch.Request()
+        interactor?.getLaunch(request: request)
+    }
+    
+    func displayLaunch(viewModel: ShowLaunch.GetLaunch.ViewModel) {
+        let displayedLaunch = viewModel.displayedLaunch
+        youtubeId = viewModel.displayedLaunch.youtubeId
         
-        if let patch = launch.links.patch.small, let url = URL(string: patch) {
+        nameLabel.text = displayedLaunch.name
+        
+        if let patch = displayedLaunch.patch, let url = URL(string: patch) {
             Nuke.loadImage(with: url, into: patchImageView)
         }
         
-        dateLabel.text = Constants.dateFormatter.string(from: launch.date)
+        dateLabel.text = Constants.dateFormatter.string(from: displayedLaunch.date)
         
-        if let success = launch.success {
+        if let success = displayedLaunch.success {
             successLabel.text = success ? "SUCCESS" : "FAILURE"
             successLabel.textColor = success ? UIColor.systemGreen : UIColor.systemRed
         }
         
-        detailsLabel.text = launch.details
+        detailsLabel.text = displayedLaunch.details
         
-        if let flickr = launch.links.flickr.original.first, let url = URL(string: flickr) {
+        if let flickr = displayedLaunch.flickr, let url = URL(string: flickr) {
             Nuke.loadImage(with: url, into: flickrImageView)
         }
         
@@ -66,28 +117,27 @@ class ShowLaunchViewController: UIViewController {
         playButton.setImage(symbol, for: .normal)
     }
     
-    func getRocket() {
-        guard let rocketId = launch.rocketId else { return }
+    // MARK: Rocket
+//    func fetchRocket(rocketId: String) {
+//        let request = ShowLaunch.FetchRocket.Request(rocketId: rocketId)
+//        interactor?.fetchRocket(request: request)
+//    }
+    
+    func displayRocket(viewModel: ShowLaunch.FetchRocket.ViewModel) {
+        let displayedRocket = viewModel.displayedRocket
         
-        SpaceXAPI.shared.rocket(rocketId) { rocket, success in
-            if success == true, let rocket = rocket {
-                self.displayRocket(rocket)
-            }
-        }
-    }
-
-    func displayRocket(_ rocket: Rocket) {
-        rocketNameLabel.text = rocket.name
-        rocketHeightLabel.text = rocket.height.meters.description + " m"
-        rocketMassLabel.text = rocket.mass.kg.description + " kg"
+        rocketNameLabel.text = displayedRocket.name
+        rocketHeightLabel.text = displayedRocket.height
+        rocketMassLabel.text = displayedRocket.mass
         
-        if let image = rocket.images.first, let url = URL(string: image) {
+        if let image = displayedRocket.image, let url = URL(string: image) {
             Nuke.loadImage(with: url, into: rocketImageView)
         }
     }
     
+    // MARK: Play Video
     func playVideo() {
-        guard let youtubeId = launch.links.youtubeId else { return }
+        guard let youtubeId = youtubeId else { return }
         
         let playerViewController = AVPlayerViewController()
         present(playerViewController, animated: true, completion: nil)
@@ -95,9 +145,9 @@ class ShowLaunchViewController: UIViewController {
         
         XCDYouTubeClient.default().getVideoWithIdentifier(youtubeId) { video, error in
             if let streamURL = (video?.streamURLs[XCDYouTubeVideoQualityHTTPLiveStreaming] ??
-                video?.streamURLs[XCDYouTubeVideoQuality.HD720.rawValue] ??
-                video?.streamURLs[XCDYouTubeVideoQuality.medium360.rawValue] ??
-                video?.streamURLs[XCDYouTubeVideoQuality.small240.rawValue]) {
+                                    video?.streamURLs[XCDYouTubeVideoQuality.HD720.rawValue] ??
+                                    video?.streamURLs[XCDYouTubeVideoQuality.medium360.rawValue] ??
+                                    video?.streamURLs[XCDYouTubeVideoQuality.small240.rawValue]) {
                 weakPlayerViewController?.player = AVPlayer(url: streamURL)
                 weakPlayerViewController?.player?.play()
             }

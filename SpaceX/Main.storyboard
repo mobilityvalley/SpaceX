@@ -11,7 +11,7 @@
         <!--Launches-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ListLaunchesViewController" customModule="Space" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ListLaunchesViewController" customModule="SpaceX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LaunchTableViewCell" rowHeight="346" id="kZE-6x-nBG" customClass="LaunchTableViewCell" customModule="Space" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LaunchTableViewCell" rowHeight="346" id="kZE-6x-nBG" customClass="LaunchTableViewCell" customModule="SpaceX" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="346"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kZE-6x-nBG" id="DMa-Vy-2ev">
@@ -107,7 +107,7 @@
                                             <outlet property="nameLabel" destination="oB7-yD-AAD" id="cWN-M4-ixt"/>
                                             <outlet property="patchImageView" destination="XgS-Wx-Fnd" id="OKa-kU-0RN"/>
                                             <outlet property="successLabel" destination="k0h-iM-8Sc" id="2B5-am-Epr"/>
-                                            <segue destination="XX5-AH-zuL" kind="show" identifier="ShowLaunchDetail" id="WPy-0K-v0I"/>
+                                            <segue destination="XX5-AH-zuL" kind="show" identifier="ShowLaunch" id="WPy-0K-v0I"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -138,7 +138,7 @@
         <!--Show Launch View Controller-->
         <scene sceneID="pRP-IW-bWa">
             <objects>
-                <viewController id="XX5-AH-zuL" customClass="ShowLaunchViewController" customModule="Space" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShowLaunchViewController" id="XX5-AH-zuL" customClass="ShowLaunchViewController" customModule="SpaceX" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w0J-7k-bbo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

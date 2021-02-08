@@ -99,12 +99,10 @@ class ShowLaunchViewController: UIViewController, ShowLaunchDisplayLogic {
             Nuke.loadImage(with: url, into: patchImageView)
         }
         
-        dateLabel.text = Constants.dateFormatter.string(from: displayedLaunch.date)
+        dateLabel.text = displayedLaunch.date
         
-        if let success = displayedLaunch.success {
-            successLabel.text = success ? "SUCCESS" : "FAILURE"
-            successLabel.textColor = success ? UIColor.systemGreen : UIColor.systemRed
-        }
+        successLabel.text = displayedLaunch.successText
+        successLabel.textColor = displayedLaunch.successColor
         
         detailsLabel.text = displayedLaunch.details
         
@@ -118,11 +116,6 @@ class ShowLaunchViewController: UIViewController, ShowLaunchDisplayLogic {
     }
     
     // MARK: Rocket
-//    func fetchRocket(rocketId: String) {
-//        let request = ShowLaunch.FetchRocket.Request(rocketId: rocketId)
-//        interactor?.fetchRocket(request: request)
-//    }
-    
     func displayRocket(viewModel: ShowLaunch.FetchRocket.ViewModel) {
         let displayedRocket = viewModel.displayedRocket
         

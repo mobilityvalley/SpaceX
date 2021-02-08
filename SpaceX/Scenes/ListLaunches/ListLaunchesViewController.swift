@@ -86,12 +86,10 @@ extension ListLaunchesViewController: UITableViewDelegate, UITableViewDataSource
         
         cell.containerView.layer.cornerRadius = Constants.corners
         cell.nameLabel.text = displayedLaunch.name
-        cell.dateLabel.text = Constants.dateFormatter.string(from: displayedLaunch.date)
+        cell.dateLabel.text = displayedLaunch.date
         
-        if let success = displayedLaunch.success {
-            cell.successLabel.text = success ? "SUCCESS" : "FAILURE"
-            cell.successLabel.textColor = success ? UIColor.systemGreen : UIColor.systemRed
-        }
+        cell.successLabel.text = displayedLaunch.successText
+        cell.successLabel.textColor = displayedLaunch.successColor
         
         cell.detailsLabel.text = displayedLaunch.details
         

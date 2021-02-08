@@ -21,7 +21,19 @@ class ShowLaunchPresenter: ShowLaunchPresentationLogic {
         let patch = launch.links.patch.small
         let flickr = launch.links.flickr.original.first
         
-        let displayedLaunch = ShowLaunch.GetLaunch.ViewModel.DisplayedLaunch(name: launch.name, patch: patch, flickr: flickr, date: launch.date, success: launch.success, details: launch.details)
+        let date = Constants.dateFormatter.string(from: launch.date)
+        
+        var successText = ""
+        var successColor: UIColor = .white
+        
+        if let success = launch.success {
+            successText = success ? "SUCCESS" : "FAILURE"
+            successColor = success ? UIColor.systemGreen : UIColor.systemRed
+        }
+        
+        let youtubeId = launch.links.youtubeId
+        
+        let displayedLaunch = ShowLaunch.GetLaunch.ViewModel.DisplayedLaunch(name: launch.name, patch: patch, flickr: flickr, date: date, successText: successText, successColor: successColor, details: launch.details, rocketId: launch.rocketId, youtubeId: youtubeId)
         
         let viewModel = ShowLaunch.GetLaunch.ViewModel(displayedLaunch: displayedLaunch)
         viewController?.displayLaunch(viewModel: viewModel)

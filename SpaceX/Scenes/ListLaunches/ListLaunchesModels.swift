@@ -20,8 +20,9 @@ enum ListLaunches {
         struct ViewModel {
             struct DisplayedLaunch {
                 var name: String
-                var date: Date
-                var success: Bool?
+                var date: String
+                var successText: String?
+                var successColor: UIColor?
                 var details: String?
                 var flickr: String?
                 var patch: String?

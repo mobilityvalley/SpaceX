@@ -23,8 +23,9 @@ enum ShowLaunch
                 var name: String
                 var patch: String?
                 var flickr: String?
-                var date: Date
-                var success: Bool?
+                var date: String
+                var successText: String?
+                var successColor: UIColor?
                 var details: String?
                 var rocketId: String?
                 var youtubeId: String?

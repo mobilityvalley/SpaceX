@@ -17,10 +17,21 @@ class ListLaunchesPresenter: ListLaunchesPresentationLogic {
     func presentFetchedLaunches(response: ListLaunches.FetchLaunches.Response) {
         var displayedLaunches: [ListLaunches.FetchLaunches.ViewModel.DisplayedLaunch] = []
         for launch in response.launches {
+            let date = Constants.dateFormatter.string(from: launch.date)
             let flickr = launch.links.flickr.original.first
             let patch = launch.links.patch.small
             let youtubeId = launch.links.youtubeId
-            let displayedLaunch = ListLaunches.FetchLaunches.ViewModel.DisplayedLaunch(name: launch.name, date: launch.date, success: launch.success, details: launch.details, flickr: flickr, patch: patch, youtubeId: youtubeId)
+            
+            var successText = ""
+            var successColor: UIColor = .white
+            
+            if let success = launch.success {
+                successText = success ? "SUCCESS" : "FAILURE"
+                successColor = success ? UIColor.systemGreen : UIColor.systemRed
+            }
+            
+            let displayedLaunch = ListLaunches.FetchLaunches.ViewModel.DisplayedLaunch(name: launch.name, date: date, successText: successText, successColor: successColor, details: launch.details, flickr: flickr, patch: patch, youtubeId: youtubeId)
+            
             displayedLaunches.append(displayedLaunch)
         }
         

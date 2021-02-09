@@ -8,14 +8,14 @@
 import Foundation
 
 struct Launch: Decodable {
-    var id: String
-    var flightNumber: Int
-    var name: String
-    var date: Date
-    var links: Links
-    var success: Bool?
-    var details: String?
-    var rocketId: String?
+    let id: String
+    let flightNumber: Int
+    let name: String
+    let date: Date
+    let links: Links
+    let success: Bool?
+    let details: String?
+    let rocketId: String?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -30,9 +30,9 @@ struct Launch: Decodable {
 }
 
 struct Links: Decodable {
-    var patch: Patch
-    var flickr: Flickr
-    var youtubeId: String?
+    let patch: Patch
+    let flickr: Flickr
+    let youtubeId: String?
     
     enum CodingKeys: String, CodingKey {
         case patch
@@ -42,9 +42,13 @@ struct Links: Decodable {
 }
 
 struct Patch: Decodable {
-    var small: String?
+    let small: String?
 }
 
 struct Flickr: Decodable {
-    var original: [String]
+    let original: [String]
 }
+
+
+
+

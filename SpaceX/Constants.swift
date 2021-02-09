@@ -14,7 +14,7 @@ struct Constants {
     
     // MARK: - Date Formatter
     static let dateFormatter: DateFormatter = {
-      var dateFormatter = DateFormatter()
+      let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
       return dateFormatter
     }()

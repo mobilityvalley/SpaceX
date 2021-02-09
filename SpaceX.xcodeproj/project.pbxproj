@@ -10,6 +10,9 @@
 		8CA7DF4C9F5E136770E503E8 /* Pods_SpaceXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F2301379C23670C0417B285 /* Pods_SpaceXTests.framework */; };
 		B47174172BC4F47604B7638F /* Pods_SpaceX_SpaceXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D26A8B25264167504EA54B0 /* Pods_SpaceX_SpaceXUITests.framework */; };
 		CF3D4DE7D77FE69579ED7D25 /* Pods_SpaceX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C98272537E96AF6F825662 /* Pods_SpaceX.framework */; };
+		EF41B1E425D2892D00F533B6 /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF41B1E325D2892D00F533B6 /* Seeds.swift */; };
+		EF41B1F425D28B6A00F533B6 /* SpaceXAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF41B1F325D28B6A00F533B6 /* SpaceXAPITests.swift */; };
+		EF41B1FF25D28CE500F533B6 /* ListLaunchesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF41B1FE25D28CE500F533B6 /* ListLaunchesViewControllerTests.swift */; };
 		EF85218B25D13C04009C0DD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF85218A25D13C04009C0DD6 /* Main.storyboard */; };
 		EF8521AF25D146A0009C0DD6 /* ListLaunchesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8521A925D146A0009C0DD6 /* ListLaunchesPresenter.swift */; };
 		EF8521B025D146A0009C0DD6 /* ListLaunchesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8521AA25D146A0009C0DD6 /* ListLaunchesWorker.swift */; };
@@ -65,6 +68,9 @@
 		BAF2C2A57A0BD0C828E5D2A1 /* Pods-SpaceX-SpaceXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX-SpaceXUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpaceX-SpaceXUITests/Pods-SpaceX-SpaceXUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E3AED795A90047C11C39208A /* Pods-SpaceXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceXTests.release.xcconfig"; path = "Target Support Files/Pods-SpaceXTests/Pods-SpaceXTests.release.xcconfig"; sourceTree = "<group>"; };
 		E67C388D78A5421AA3601816 /* Pods-SpaceX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceX.debug.xcconfig"; path = "Target Support Files/Pods-SpaceX/Pods-SpaceX.debug.xcconfig"; sourceTree = "<group>"; };
+		EF41B1E325D2892D00F533B6 /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
+		EF41B1F325D28B6A00F533B6 /* SpaceXAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXAPITests.swift; sourceTree = "<group>"; };
+		EF41B1FE25D28CE500F533B6 /* ListLaunchesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaunchesViewControllerTests.swift; sourceTree = "<group>"; };
 		EF85218A25D13C04009C0DD6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EF8521A925D146A0009C0DD6 /* ListLaunchesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaunchesPresenter.swift; sourceTree = "<group>"; };
 		EF8521AA25D146A0009C0DD6 /* ListLaunchesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLaunchesWorker.swift; sourceTree = "<group>"; };
@@ -194,6 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				EFAFC60725D136B100787AE5 /* SpaceXTests.swift */,
+				EF41B1FE25D28CE500F533B6 /* ListLaunchesViewControllerTests.swift */,
+				EF41B1E325D2892D00F533B6 /* Seeds.swift */,
+				EF41B1F325D28B6A00F533B6 /* SpaceXAPITests.swift */,
 				EFAFC60925D136B100787AE5 /* Info.plist */,
 			);
 			path = SpaceXTests;
@@ -536,6 +545,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF41B1F425D28B6A00F533B6 /* SpaceXAPITests.swift in Sources */,
+				EF41B1FF25D28CE500F533B6 /* ListLaunchesViewControllerTests.swift in Sources */,
+				EF41B1E425D2892D00F533B6 /* Seeds.swift in Sources */,
 				EFAFC60825D136B100787AE5 /* SpaceXTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

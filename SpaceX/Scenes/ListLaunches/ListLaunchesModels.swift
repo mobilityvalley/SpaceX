@@ -14,21 +14,21 @@ enum ListLaunches {
         }
         
         struct Response {
-            var launches: [Launch]
+            let launches: [Launch]
         }
         
         struct ViewModel {
             struct DisplayedLaunch {
-                var name: String
-                var date: String
-                var successText: String?
-                var successColor: UIColor?
-                var details: String?
-                var flickr: String?
-                var patch: String?
-                var youtubeId: String?
+                let name: String
+                let date: String
+                let successText: String?
+                let successColor: UIColor?
+                let details: String?
+                let flickr: String?
+                let patch: String?
+                let youtubeId: String?
             }
-            var displayedLaunches: [DisplayedLaunch]
+            let displayedLaunches: [DisplayedLaunch]
         }
     }
 }

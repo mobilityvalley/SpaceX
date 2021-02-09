@@ -8,12 +8,12 @@
 import Foundation
 
 struct Rocket: Decodable {
-    var id: String
-    var name: String
-    var height: Height
-    var mass: Mass
-    var images: [String]
-    var description: String
+    let id: String
+    let name: String
+    let height: Height
+    let mass: Mass
+    let images: [String]
+    let description: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -26,10 +26,10 @@ struct Rocket: Decodable {
 }
 
 struct Height: Decodable {
-    var meters: Float
+    let meters: Float
 }
 
 struct Mass: Decodable {
-    var kg: Float
+    let kg: Float
 }
 

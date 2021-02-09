@@ -39,7 +39,8 @@ class ShowLaunchViewController: UIViewController, ShowLaunchDisplayLogic {
     
     var interactor: ShowLaunchBusinessLogic?
     var router: (NSObjectProtocol & ShowLaunchRoutingLogic & ShowLaunchDataPassing)?
-    var youtubeId: String?
+    
+    fileprivate var youtubeId: String?
     
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

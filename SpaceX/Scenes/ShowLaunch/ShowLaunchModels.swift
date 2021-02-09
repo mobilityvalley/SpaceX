@@ -15,22 +15,22 @@ enum ShowLaunch
         }
         
         struct Response {
-            var launch: Launch
+            let launch: Launch
         }
         
         struct ViewModel {
             struct DisplayedLaunch {
-                var name: String
-                var patch: String?
-                var flickr: String?
-                var date: String
-                var successText: String?
-                var successColor: UIColor?
-                var details: String?
-                var rocketId: String?
-                var youtubeId: String?
+                let name: String
+                let patch: String?
+                let flickr: String?
+                let date: String
+                let successText: String?
+                let successColor: UIColor?
+                let details: String?
+                let rocketId: String?
+                let youtubeId: String?
             }
-            var displayedLaunch: DisplayedLaunch
+            let displayedLaunch: DisplayedLaunch
         }
     }
     

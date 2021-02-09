@@ -11,7 +11,7 @@ class SpaceXAPI {
     
     // MARK: - Properties
     static let shared = SpaceXAPI()
-    let baseUrl = "https://api.spacexdata.com/v4/"
+    fileprivate let baseUrl = "https://api.spacexdata.com/v4/"
     
     func launches(completion: @escaping (_ launches: [Launch]?, Bool?) -> Void) {
         let route = baseUrl + "launches/past"

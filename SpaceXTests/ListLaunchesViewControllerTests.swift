@@ -33,6 +33,7 @@ class ListLaunchesViewControllerTests: XCTestCase {
         let bundle = Bundle.main
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         sut = storyboard.instantiateViewController(withIdentifier: "ListLaunchesViewController") as? ListLaunchesViewController
+        sut.fetchLaunches()
     }
     
     func loadView() {
@@ -69,19 +70,6 @@ class ListLaunchesViewControllerTests: XCTestCase {
     }
     
     // MARK: - Tests
-    
-    func testShouldFetchLaunchesWhenViewDidAppear() {
-        // Given
-        let listLaunchesBusinessLogicSpy = ListLaunchesBusinessLogicSpy()
-        sut.interactor = listLaunchesBusinessLogicSpy
-        loadView()
-        
-        // When
-        sut.viewDidAppear(true)
-        
-        // Then
-        XCTAssert(listLaunchesBusinessLogicSpy.fetchLaunchesCalled, "Should fetch launches right after the view appears")
-    }
     
     func testShouldDisplayFetchedLaunches() {
         // Given

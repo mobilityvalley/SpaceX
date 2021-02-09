@@ -12,7 +12,7 @@ pod install
 
 ## Informations
 
-* Support iOS 13
+* Support iOS 14 (iOS 13 ok)
 * Request to API not paginated because less than 1k is returned
 * A spinner could be added and error messages to inform the used in case should be implemented
 
